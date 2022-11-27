@@ -1,0 +1,13 @@
+{
+  "name": "random-web-things",
+  "version": "1.0.0",
+  "description": "A collection of small web related things I've made",
+  "scripts": {
+    "start": "wds --node-resolve --open --watch"
+  },
+  "author": "João Capucho",
+  "license": "ISC",
+  "devDependencies": {
+    "@web/dev-server": "^0.1.35"
+  }
+}

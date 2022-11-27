@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Convocatória para receção de pedido</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    .rating {
+      --dir: right;
+      --fill: gold;
+      --fillbg: rgba(100, 100, 100, 0.15);
+      --heart: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.328l-1.453-1.313q-2.484-2.25-3.609-3.328t-2.508-2.672-1.898-2.883-0.516-2.648q0-2.297 1.57-3.891t3.914-1.594q2.719 0 4.5 2.109 1.781-2.109 4.5-2.109 2.344 0 3.914 1.594t1.57 3.891q0 1.828-1.219 3.797t-2.648 3.422-4.664 4.359z"/></svg>');
+      --star: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.25l-6.188 3.75 1.641-7.031-5.438-4.734 7.172-0.609 2.813-6.609 2.813 6.609 7.172 0.609-5.438 4.734 1.641 7.031z"/></svg>');
+      --stars: 5;
+      --starsize: 3rem;
+      --symbol: var(--star);
+      --value: 5;
+      --w: calc(var(--stars) * var(--starsize));
+      --x: calc(100% * (var(--value) / var(--stars)));
+      block-size: var(--starsize);
+      inline-size: var(--w);
+      position: relative;
+      touch-action: manipulation;
+      -webkit-appearance: none;
+    }
+
+    .rating::-moz-range-track {
+      background: linear-gradient(to var(--dir),
+          var(--fill) 0 var(--x),
+          var(--fillbg) 0 var(--x));
+      block-size: 100%;
+      mask: repeat left center/var(--starsize) var(--symbol);
+    }
+
+    .rating::-webkit-slider-runnable-track {
+      background: linear-gradient(to var(--dir),
+          var(--fill) 0 var(--x),
+          var(--fillbg) 0 var(--x));
+      block-size: 100%;
+      mask: repeat left center/var(--starsize) var(--symbol);
+      -webkit-mask: repeat left center/var(--starsize) var(--symbol);
+    }
+
+    .rating::-moz-range-thumb {
+      height: var(--starsize);
+      opacity: 0;
+      width: var(--starsize);
+    }
+
+    .rating::-webkit-slider-thumb {
+      height: var(--starsize);
+      opacity: 0;
+      width: var(--starsize);
+      -webkit-appearance: none;
+    }
+
+    .rating,
+    .rating-label {
+      margin-block-end: 1rem;
+    }
+  </style>
+</head>
+
+<body class="flex justify-center items-center">
+  <div
+    class="max-w-xl p-6 m-4 lg:m-0 bg-white border border-gray-200 rounded-lg shadow-md flex flex-col justify-center">
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+      Convocatória para receção de pedido
+    </h5>
+    <p class="mb-3 font-normal text-gray-700">
+      Caríssimo mestre deste muito prestigiado Curso que é Engenharia
+      informática, o seu aluvião e candidato a futuro pedaço vem por este meio
+      pedir-lhe que após a próxima faina dispense um pouco do seu mui precioso
+      tempo para a receção de um pedido para celebrar oficialmente o
+      aceitamento deste humilde pedaço na sua família.
+    </p>
+    <p class="mb-3 font-normal text-gray-700">
+      Mas como tal decisão difícil não deve ser feita de ânimo leve e de forma
+      a não restar dúvida acerca de qual a escolha certa, pode esperar uma
+      demonstração digna da sua presença.
+    </p>
+    <p class="mb-3 font-normal text-gray-700">
+      Pede-se só, para que não haja imprevistos, que indique se irá marcar
+      presença neste evento e responda a um breve questionário de forma a
+      avaliar a sua satisfação com esta convocatória.
+    </p>
+    <button
+      class="px-3 py-2 text-md font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+      data-modal-toggle="defaultModal" onclick="document.getElementById('modal').classList.remove('hidden')">
+      Vou marcar presença!
+    </button>
+  </div>
+
+  <div id="modal" class="hidden relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+    <div class="fixed inset-0 z-10 overflow-y-auto">
+      <div class="flex min-h-full items-end justify-center p-4 text-center items-center sm:p-0">
+        <div
+          class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+          <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            <div class="sm:flex sm:items-start">
+              <form name="questions" netlify class="w-full" action="submitted.html">
+                <!-- Modal Header -->
+                <div class="flex justify-between items-start pb-4 rounded-t border-b">
+                  <h3 class="text-xl font-semibold text-gray-900">
+                    Questionário
+                  </h3>
+                </div>
+                <!-- Modal Content -->
+                <div class="py-6">
+                  <h3 class="mb-3 font-normal text-gray-700">
+                    🥳 Obrigado por aceitares esta convocatória, por favor
+                    responde só a este breve questionário
+                  </h3>
+                  <div class="mb-4">
+                    <label class="rating-label block text-gray-700 text-sm font-bold mb-2">
+                      Como considera a qualidade desta convocatória
+                      <input name="rating" class="rating" max="5"
+                        oninput="this.style.setProperty('--value', `${this.valueAsNumber}`)" step="1" type="range"
+                        value="5" />
+                    </label>
+                  </div>
+                  <div class="flex items-center mb-4">
+                    <input id="answer-again" name="answer-again" type="checkbox" value=""
+                      class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500" required />
+                    <label for="answer-again" class="ml-2 text-sm font-medium text-gray-900">
+                      Responderia outra vez a este questionário
+                    </label>
+                  </div>
+                  <div class="flex items-center mb-4">
+                    <input id="not-a-robot" name="not-a-robot" type="checkbox" value=""
+                      class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500"
+                      onchange="document.getElementById('faina').classList.remove('hidden')" required />
+                    <label for="not-a-robot" class="ml-2 text-sm font-medium text-gray-900">
+                      Não sou um robô
+                    </label>
+                  </div>
+                  <div class="hidden" id="faina">
+                    <h3 class="mb-3 font-normal text-gray-700">
+                      Infelizmente, isso é o que todos dizem, por isso peço
+                      que responda a estas questões para podermos provar que
+                      de facto não é um robo
+                    </h3>
+                    <div class="mb-4">
+                      <label class="block text-gray-700 text-sm font-bold mb-2" for="local">
+                        Onde se vai realizar a faina de amanhã?
+                      </label>
+                      <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="local" name="local" type="text" required />
+                    </div>
+                    <div class="timepicker relative form-floating mb-4 xl:w-96">
+                      <input id="hora" type="text" name="hora"
+                        class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        placeholder="Seleciona uma hora" required />
+                      <label for="floatingInput" class="text-gray-700">
+                        E a que horas?
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="flex items-center py-2 space-x-2 rounded-b border-t border-gray-200">
+                  <button type="submit"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                    Submeter
+                  </button>
+                  <button type="reset"
+                    class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">
+                    Limpar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- tailwind elements Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+</body>
+
+</html>
